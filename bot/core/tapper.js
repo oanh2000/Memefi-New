@@ -104,15 +104,7 @@ class Tapper {
         const queryStringFromCache = tmp.getJson(this.session_name);
         if (!_.isEmpty(queryStringFromCache)) {
           const data = parser.toJson(queryStringFromCache);
-          if (
-            _.isUndefined(data?.user?.username) ||
-            _.isNull(data?.user?.username)
-          ) {
-            logger.paragraph(
-              `Set username for session name <la>${this.session_name}</la> in telegram \nbefore running the bot and follow the below steps after you are done setting the username:\n\n1. Delete the cache folder\n2. Restart the bot`
-            );
-            process.exit(1);
-          }
+          
           const userString = JSON.stringify(data?.user);
           const jsonData = {
             webAppData: {
